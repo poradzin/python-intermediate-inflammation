@@ -15,10 +15,10 @@ def main(args):
     """
     InFiles = args.infiles
     if not isinstance(InFiles, list):
-        InFiles = [args.infiles]
+        in_files = [args.infiles]
 
 
-    for filename in InFiles:
+    for filename in in_files:
         inflammation_data = models.load_csv(filename)
 
         view_data = {
