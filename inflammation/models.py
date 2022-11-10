@@ -65,3 +65,52 @@ def patient_normalise(data):
         normalised = data / max_data[:, np.newaxis]
     normalised[np.isnan(normalised)] = 0
     return normalised
+
+
+class Observation:
+    def __init__(self, day, value):
+        self.day = day
+        self.value = value
+    def __str__(self):
+        return str(self.value)
+
+class Patient:
+    def __init__(self, name):
+        self.name = name
+        self.observations = []
+
+    def get_name(self):
+        return self.name
+
+    def get_observations(self):
+        return self.observations
+
+    def add_observation(self, value, day=None):
+        if day is None:
+            try:
+                day = self.observations[-1].day + 1
+
+            except IndexError:
+                day = 0
+
+        new_observation = Observation(day, value)
+
+        self.observations.append(new_observation)
+        return new_observation
+
+    def __str__(self):
+        return self.name
+
+    @property
+    def last_observation(self):
+        return self.observations[-1]
+
+alice = Patient('Alice')
+print(alice.get_name())
+
+print(alice)
+
+alice.add_observation(3)
+
+#obs = alice.add_observation(4)
+print([str(x) for x in alice.observations])
