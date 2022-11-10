@@ -69,14 +69,26 @@ def patient_normalise(data):
 
 class Observation:
     def __init__(self, day, value):
-        self.day = day
+        self._day = day
         self.value = value
     def __str__(self):
         return str(self.value)
 
-class Patient:
+    @property
+    def day(self):
+        return self._day
+
+class Person:
     def __init__(self, name):
         self.name = name
+
+    def __str__(self):
+        return self.name
+
+class Patient(Person):
+    """A patient in an inflammation study."""
+    def __init__(self, name):
+        super().__init__(name)
         self.observations = []
 
     def get_name(self):
@@ -114,3 +126,15 @@ alice.add_observation(3)
 
 #obs = alice.add_observation(4)
 print([str(x) for x in alice.observations])
+
+alice = Patient('Alice')
+print(alice)
+
+obs = alice.add_observation(3)
+print(obs)
+
+bob = Person('Bob')
+print(bob)
+
+obs = bob.add_observation(4)
+print(obs)
