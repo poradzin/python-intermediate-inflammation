@@ -117,6 +117,7 @@ class Patient(Person):
     def last_observation(self):
         return self.observations[-1]
 
+
 alice = Patient('Alice')
 print(alice.get_name())
 
@@ -136,5 +137,6 @@ print(obs)
 bob = Person('Bob')
 print(bob)
 
-obs = bob.add_observation(4)
+# return an error because bob is not a patient class object 
+#obs = bob.add_observation(4)
 print(obs)
