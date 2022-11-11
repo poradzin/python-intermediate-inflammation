@@ -150,6 +150,3 @@ print(obs)
 
 bob = Person('Bob')
 print(bob)
-
-obs = bob.add_observation(4)
-print(obs)
