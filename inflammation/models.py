@@ -118,6 +118,20 @@ class Patient(Person):
         return self.observations[-1]
 
 
+class Doctor(Person):
+    def __init__(self, name):
+        super().__init__(name)
+        self.patients = []
+
+    def add_patient(self, new_patient):
+        # A crude check by name if this patient is already looked after
+        # by this doctor before adding them
+        for patient in self.patients:
+            if patient.name == new_patient.name:
+                return
+        self.patients.append(new_patient)
+
+
 alice = Patient('Alice')
 print(alice.get_name())
 
@@ -137,6 +151,5 @@ print(obs)
 bob = Person('Bob')
 print(bob)
 
-# return an error because bob is not a patient class object 
-#obs = bob.add_observation(4)
+obs = bob.add_observation(4)
 print(obs)
